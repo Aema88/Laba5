@@ -11,6 +11,7 @@
 <%@ page import="doroshenko.Student" %>
 
 
+
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -35,8 +36,8 @@
 
 <body>
 <div id="page">
-    <h1>Hello world!</h1>
-    <form>
+    <h1>Servlet</h1>
+    <form method="post" action="StudentAdd">
         <table>
             <tbody>
             <tr>
@@ -51,40 +52,41 @@
                 <td><label for="email">Email</label></td>
                 <td><input id="email" type="text" name="email"></td>
             </tr>
+            <tr>
+                <td><label for="group">Group</label></td>
+                <td><input id="group" type="text" name="group"></td>
+            </tr>
+            <tr>
+                <td><label for="faculty">Faculty</label></td>
+                <td><input id="faculty" type="text" name="faculty"></td>
+            </tr>
             </tbody>
         </table>
         <input type="submit" name="send" value="Submit">
     </form>
 </div>
 
-<% List<Student> students = (List<Student>) application.getAttribute("students"); %>
-<c:if test = "${not empty param.send}">
-    <%
-        if(students == null){
-            students = new LinkedList<Student>();
-            application.setAttribute("students",students);
-        }
-        if(request.getParameter("name") != "" || request.getParameter("surname") != ""){
-            Student student = new Student();
-            student.setName(request.getParameter("name"));
-            student.setSurname(request.getParameter("surname"));
-            student.setEmail(request.getParameter("email"));
-            students.add(student);
-        }
-        response.sendRedirect("student.jsp");
-    %>
+<c:if test="${students.size() > 0}">
+    <table class="list">
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Group</th>
+            <th>Faculty</th>
+        </tr>
+        <c:forEach var ="student" items="${students}">
+            <tr>
+                <td><c:out value="${student.getName()}"/> </td>
+                <td><c:out value="${student.getSurname()}"/> </td>
+                <td><c:out value="${student.getEmail()}"/> </td>
+                <td><c:out value="${student.getGroup()}"/> </td>
+                <td><c:out value="${student.getFaculty()}"/> </td>
+            </tr>
 
+        </c:forEach>
+    </table>
 </c:if>
-
-<%
-    if(students != null){
-        out.println("<table class=\"list\"><tr><th>Name</th><th>Surname</th><th>Email</th></tr>");
-        for(Student s : students){
-            out.println("<tr><td>"+s.getName()+"</td><td>"+s.getSurname()+"</td><td>"+ s.getEmail()+"</td></tr>");
-        }
-        out.println("</table>");
-    }
-%>
 
 
 </body>
