@@ -1,6 +1,10 @@
 package doroshenko;
 
 public class Student {
+
+
+    private  Integer id;
+
     private String name;
     private String surname;
     private String email;
@@ -10,13 +14,20 @@ public class Student {
     public Student(){}
 
     public Student(String name, String surname, String email, String group, String faculty) {
+
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.group = group;
         this.faculty = faculty;
     }
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

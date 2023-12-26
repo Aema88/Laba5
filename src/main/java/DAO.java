@@ -30,6 +30,7 @@ public class DAO {
         ResultSet resultSet = statement.executeQuery(SQL);
         while(resultSet.next()){
             Student student = new Student();
+            student.setId(resultSet.getInt("id"));
             student.setName(resultSet.getString("name"));
             student.setEmail(resultSet.getString("email"));
             student.setSurname(resultSet.getString("surname"));
@@ -48,6 +49,23 @@ public class DAO {
         preparedStatement.setString(4,student.getGroup());
         preparedStatement.setString(5,student.getFaculty());
         preparedStatement.executeUpdate();
+    }
+    public Student FindStudent(Integer id) throws SQLException {
+        PreparedStatement preparedStatement =
+                connection.prepareStatement("SELECT * from student where id = ?");
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Student student = new Student();
+        while(resultSet.next()){
+
+            student.setId(resultSet.getInt("id"));
+            student.setName(resultSet.getString("name"));
+            student.setEmail(resultSet.getString("email"));
+            student.setSurname(resultSet.getString("surname"));
+            student.setGroup(resultSet.getString("sgroup"));
+            student.setFaculty(resultSet.getString("faculty"));
+        }
+        return student;
     }
 }
 

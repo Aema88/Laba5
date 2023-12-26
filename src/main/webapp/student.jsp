@@ -82,6 +82,9 @@
                 <td><c:out value="${student.getEmail()}"/> </td>
                 <td><c:out value="${student.getGroup()}"/> </td>
                 <td><c:out value="${student.getFaculty()}"/> </td>
+                <td>
+                    <a href="/marks?id=${student.getId()}">Marks</a>
+                </td>
             </tr>
 
         </c:forEach>
