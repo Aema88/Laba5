@@ -67,5 +67,23 @@ public class DAO {
         }
         return student;
     }
+    public List<Grade> FindMarks(Integer id) throws SQLException {
+        PreparedStatement preparedStatement =
+                connection.prepareStatement("SELECT * from grades where student = ?");
+        preparedStatement.setInt(1,id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Grade grade = new Grade();
+        List<Grade> grades = new ArrayList<>();
+        while(resultSet.next()){
+            grade.setId(resultSet.getInt("id"));
+            grade.setStudent(resultSet.getInt("student_id"));
+            grade.setDiscipline(resultSet.getString("discipline"));
+            grade.setEcts(resultSet.getString("ects_score"));
+            grade.setRegular(resultSet.getInt("regular_score"));
+            grades.add(grade);
+        }
+
+        return grades;
+    }
 }
 

@@ -17,7 +17,9 @@ public class MarksServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request , HttpServletResponse response) throws ServletException, IOException, SQLException {
         HttpSession session = request.getSession();
         Integer id = Integer.parseInt(request.getParameter("id"));
+        List<Grade> grades = studentDAO.FindMarks(id);
         session.setAttribute("students" , studentDAO.FindStudent(id));
+        session.setAttribute("marks" , grades);
         response.sendRedirect("/marks.jsp");
     }
 

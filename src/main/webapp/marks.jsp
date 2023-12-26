@@ -68,9 +68,9 @@
         </tr>
         <c:forEach var="disc" items="${marks}">
             <tr>
-                <td><c:out value="${disc.getTitle()}"/></td>
-                <td><c:out value="${disc.getMark_num()}"/></td>
-                <td><c:out value="${disc.getMark_let()}"/></td>
+                <td><c:out value="${disc.getDiscipline()}"/></td>
+                <td><c:out value="${disc.getRegular()}"/></td>
+                <td><c:out value="${disc.getEcts()}"/></td>
             </tr>
         </c:forEach>
     </table>
