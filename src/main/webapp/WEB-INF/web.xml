@@ -8,6 +8,14 @@
     <servlet-name>StudentAdd</servlet-name>
     <url-pattern>/StudentAdd</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>MarksServlet</servlet-name>
+    <servlet-class>MarksServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MarksServlet</servlet-name>
+    <url-pattern>/marks</url-pattern>
+  </servlet-mapping>
   <session-config>
     <session-timeout>
       30
